@@ -82,17 +82,7 @@ class Home extends React.Component {
             <FlatList
               horizontal
               data={isData.results}
-              renderItem={item => {
-                return (
-                  <View style={styles.newcontainer}>
-                    <View style={styles.newupper}>
-                      <Text>{item.title}</Text>
-                    </View>
-                    <View style={styles.newlower} />
-                  </View>
-                );
-              }}
-              keyExtractor={item => item.id}
+              renderItem={this._picdata}
             />
           </View>
           <View style={styles.movietext}>
@@ -128,6 +118,17 @@ class Home extends React.Component {
         <TouchableOpacity>
           <Image source={item.title} style={styles.imagestyle} />
         </TouchableOpacity>
+      </View>
+    );
+  }
+  _picdata({item}) {
+    return (
+      <View style={styles.newcontainer}>
+        <View style={styles.newupper} />
+        <View style={styles.newlower}>
+          <Text style={{color: colorConstants.white}}>{item.title}</Text>
+          <Text style={{color: colorConstants.white}}>{item.vote_average}</Text>
+        </View>
       </View>
     );
   }
