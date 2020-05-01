@@ -9,17 +9,21 @@ import {
   TextInput,
 } from 'react-native';
 import {imageConstants} from '../config/constants';
+const Realm = require('realm');
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
+      realm: null,
     };
   }
 
   render() {
     const {navigation, flag} = this.props;
+    const {username, password, realm} = this.state;
     return (
       <ImageBackground source={imageConstants.layer_1} style={styles.container}>
         <View style={styles.logoview}>
@@ -71,7 +75,7 @@ class Login extends React.Component {
         </View>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('MyDrawer');
           }}>
           <View style={styles.loginbuttonview}>
             <Text style={styles.logintextbutton}>Login</Text>
