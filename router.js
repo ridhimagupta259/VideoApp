@@ -13,6 +13,7 @@ import Movies from './src/components/movies';
 import Sports from './src/components/sports';
 import Kids from './src/components/kids';
 import Set from './src/components/settings';
+import store from './src/services/rootreducer';
 
 const Drawer = createDrawerNavigator();
 
@@ -54,9 +55,11 @@ const MyStack = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

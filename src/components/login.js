@@ -8,8 +8,8 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import {imageConstants} from '../config/constants';
-const Realm = require('realm');
+import {imageConstants, colorConstants} from '../config/constants';
+//const Realm = require('realm');
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Login extends React.Component {
     return (
       <ImageBackground source={imageConstants.layer_1} style={styles.container}>
         <View style={styles.logoview}>
-          <Image source={require('../assets/logo.png')} />
+          <Image source={imageConstants.logo} />
         </View>
         <View style={styles.appview}>
           <Text style={styles.apptext}>APP NAME</Text>
@@ -46,36 +46,32 @@ class Login extends React.Component {
         </View>
 
         <View style={styles.textinputview}>
-          <Image
-            source={require('../assets/person2.png')}
-            style={styles.imagestyle}
-          />
+          <Image source={imageConstants.person2} style={styles.imagestyle} />
 
           <TextInput
             style={styles.textinput}
             placeholder="User Name"
-            placeholderTextColor="#737373"
+            placeholderTextColor={colorConstants.grey}
             onChangeText={text => this.setState({username: text})}
           />
         </View>
 
         <View style={styles.textinputview}>
-          <Image
-            source={require('../assets/person2.png')}
-            style={styles.imagestyle}
-          />
+          <Image source={imageConstants.person2} style={styles.imagestyle} />
 
           <TextInput
             style={styles.textinput}
             placeholder="Password"
-            placeholderTextColor="#737373"
+            placeholderTextColor={colorConstants.grey}
             secureTextEntry="true"
             onChangeText={text => this.setState({password: text})}
           />
         </View>
         <TouchableOpacity
           onPress={() => {
+            //if (username === 'Admin' && password === 'Admin') {
             this.props.navigation.navigate('MyDrawer');
+            //}
           }}>
           <View style={styles.loginbuttonview}>
             <Text style={styles.logintextbutton}>Login</Text>
@@ -100,7 +96,7 @@ const styles = StyleSheet.create({
   apptext: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff',
+    color: colorConstants.white,
     alignContent: 'center',
   },
   appview: {
@@ -117,20 +113,20 @@ const styles = StyleSheet.create({
   },
   logintext: {
     fontSize: 25,
-    color: '#e4264e',
+    color: colorConstants.pink,
     fontWeight: 'bold',
   },
   dividetext: {
     fontSize: 30,
-    color: '#737373',
+    color: colorConstants.grey,
   },
   signtext: {
     fontSize: 25,
-    color: '#bfbfbf',
+    color: colorConstants.lightgrey,
     fontWeight: 'bold',
   },
   text1: {
-    color: '#737373',
+    color: colorConstants.grey,
     fontSize: 17,
   },
   textview: {
@@ -138,15 +134,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textinputview: {
-    backgroundColor: '#181f29',
+    backgroundColor: colorConstants.blue,
     marginHorizontal: 20,
     marginTop: 30,
-    color: 'white',
+    color: colorConstants.white,
     flexDirection: 'row',
     borderRadius: 5,
   },
   textinput: {
-    color: '#fff',
+    color: colorConstants.white,
     padding: 15,
     fontSize: 15,
     width: '80%',
@@ -158,7 +154,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   loginbuttonview: {
-    backgroundColor: '#e4264e',
+    backgroundColor: colorConstants.pink,
     padding: 10,
     alignItems: 'center',
     marginHorizontal: 20,
@@ -166,7 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   logintextbutton: {
-    color: 'white',
+    color: colorConstants.white,
     fontSize: 20,
   },
   forgotview: {
@@ -175,7 +171,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   forgottext: {
-    color: '#737373',
+    color: colorConstants.grey,
   },
 });
 
