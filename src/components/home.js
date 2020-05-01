@@ -11,9 +11,9 @@ import {
   FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {dataApi} from '../services/Home/action';
+import {dataApi, pictureApi} from '../services/Home/action';
 import {imageConstants, colorConstants} from '../config/constants';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -21,19 +21,19 @@ class Home extends React.Component {
       activeIndex: 0,
       carouselItems: [
         {
-          title: 'Item 1',
+          title: imageConstants.photo,
         },
         {
-          title: 'Item 2',
+          title: imageConstants.photo,
         },
         {
-          title: 'Item 3',
+          title: imageConstants.photo,
         },
         {
-          title: 'Item 4',
+          title: imageConstants.photo,
         },
         {
-          title: 'Item 5',
+          title: imageConstants.photo,
         },
       ],
     };
@@ -41,7 +41,7 @@ class Home extends React.Component {
 
   render() {
     const {navigation, flag, isData} = this.props;
-    console.log(isData.results[0]);
+    //console.log(isData.results[0].backdrop_path);
     return (
       <ScrollView style={{backgroundColor: colorConstants.black}}>
         <ImageBackground
@@ -70,6 +70,7 @@ class Home extends React.Component {
               renderItem={this._renderItem}
               onSnapToItem={index => this.setState({activeIndex: index})}
             />
+            {this.pagination()}
           </View>
           <View style={styles.movietext}>
             <Text style={styles.moviefont}>MOVIES</Text>
@@ -85,7 +86,7 @@ class Home extends React.Component {
                 return (
                   <View style={styles.newcontainer}>
                     <View style={styles.newupper}>
-                      
+                      <Text>{item.title}</Text>
                     </View>
                     <View style={styles.newlower} />
                   </View>
@@ -104,14 +105,29 @@ class Home extends React.Component {
       </ScrollView>
     );
   }
+  pagination() {
+    const {carouselItems, activeIndex} = this.state;
+    return (
+      <Pagination
+        dotsLength={carouselItems.length}
+        activeDotIndex={activeIndex}
+        dotStyle={styles.dot}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    );
+  }
 
   componentDidMount() {
     this.props.dataHomeApi();
+    // this.props.pictureHomeApi(this.state.isData);
   }
-  _renderItem({item, index}) {
+  _renderItem({item}) {
     return (
       <View style={styles.carouseview}>
-        <Text>{item.title}</Text>
+        <TouchableOpacity>
+          <Image source={item.title} style={styles.imagestyle} />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -121,22 +137,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  imagestyle: {
+    borderRadius: 5,
+    height: 200,
+    width: 300,
+  },
   textEdit: {
     fontSize: 20,
-    //paddingTop: 50,
+
     paddingLeft: 20,
-    color: '#fff',
+    color: colorConstants.white,
     fontWeight: 'bold',
   },
   topimages: {
     width: 28,
     height: 28,
-    backgroundColor: 'white',
+    backgroundColor: colorConstants.white,
     marginLeft: 10,
   },
   movietext: {
     flex: 0.5,
-    //backgroundColor: 'red',
     marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -154,31 +174,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowview: {flexDirection: 'row'},
-  firstlist: {height: 150, marginTop: 20},
+  firstlist: {height: 200, marginTop: 20},
   newcontainer: {
     height: 200,
     width: 150,
-    backgroundColor: '#fff',
+    backgroundColor: colorConstants.white,
     margin: 10,
     borderRadius: 5,
   },
-  newupper: {flex: 0.7, backgroundColor: 'pink'},
-  newlower: {flex: 0.3, backgroundColor: colorConstants.black},
+  newupper: {flex: 0.7, backgroundColor: colorConstants.white},
+  newlower: {flex: 0.3, backgroundColor: colorConstants.darkgrey},
   flatlistview: {
     flex: 1,
     margin: 10,
-    shadowColor: '#999999',
-    shadowOffset: {width: 1, height: 1},
-    shadowRadius: 3,
-    shadowOpacity: 1,
   },
   carouseview: {
-    backgroundColor: 'floralwhite',
-    borderRadius: 5,
-    height: 250,
-    padding: 50,
-    marginLeft: 25,
-    marginRight: 25,
+    padding: 20,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  dot: {
+    width: 5,
+    height: 5,
+    borderRadius: 10,
+    marginHorizontal: 2,
+    backgroundColor: colorConstants.white,
   },
 });
 
@@ -188,6 +208,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   dataHomeApi: dataApi,
+  pictureHomeApi: pictureApi,
 };
 
 export default connect(

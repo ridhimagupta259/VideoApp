@@ -21,7 +21,7 @@ class Sports extends React.Component {
       <ImageBackground source={imageConstants.layer_1} style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
           <Image
-            style={{width: 20, height: 20, backgroundColor: 'white'}}
+            style={{width: 20, height: 20, backgroundColor: 'white',marginLeft:10,marginTop:40}}
             source={require('../assets/menu.png')}
           />
         </TouchableOpacity>

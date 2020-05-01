@@ -6,6 +6,7 @@ export const imageConstants = {
   menu: require('../assets/menu.png'),
   bell: require('../assets/bell.png'),
   find: require('../assets/find.png'),
+  photo: require('../assets/photo.png'),
 };
 
 export const colorConstants = {
@@ -14,5 +15,6 @@ export const colorConstants = {
   pink: '#e4264e',
   lightgrey: '#bfbfbf',
   blue: '#181f29',
-  black:'#000'
+  black: '#000',
+  darkgrey: '#1a1a1a',
 };

@@ -2,9 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Login from './src/components/login';
-
 import Home from './src/components/home';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import Livetv from './src/components/livetv';
@@ -14,6 +12,7 @@ import Sports from './src/components/sports';
 import Kids from './src/components/kids';
 import Set from './src/components/settings';
 import store from './src/services/rootreducer';
+import {colorConstants} from './src/config/constants';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,7 +22,11 @@ function myDrawer() {
   return (
     <Drawer.Navigator
       drawerStyle={{
-        backgroundColor: '#c6cbef',
+        backgroundColor: colorConstants.blue,
+      }}
+      drawerContentOptions={{
+        activeTintColor: colorConstants.pink,
+        inactiveTintColor: colorConstants.white,
       }}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Live tv" component={Livetv} />

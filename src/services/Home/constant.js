@@ -1,1 +1,3 @@
 export const DISPLAY_DATA = 'DISPLAY_DATA';
+export const DISPLAY_PICTURE = 'DISPLAY_PICTURE';
+

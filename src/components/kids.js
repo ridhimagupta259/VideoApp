@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 //import {connect} from 'react-redux';
 import {toggleFlag} from '../services/Home/action';
-import {imageConstants} from '../config/constants';
+import {imageConstants, colorConstants} from '../config/constants';
 class Kids extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class Kids extends React.Component {
       <ImageBackground source={imageConstants.layer_1} style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
           <Image
-            style={{width: 20, height: 20, backgroundColor: 'white'}}
+            style={{width: 20, height: 20,backgroundColor:colorConstants.white,marginLeft:10,marginTop:40}}
             source={require('../assets/menu.png')}
           />
         </TouchableOpacity>
