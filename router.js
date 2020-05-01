@@ -11,6 +11,8 @@ import Movies from './src/components/movies';
 import Sports from './src/components/sports';
 import Kids from './src/components/kids';
 import Set from './src/components/settings';
+import Splash from './src/components/splashscreen';
+
 import store from './src/services/rootreducer';
 import {colorConstants} from './src/config/constants';
 
@@ -42,6 +44,11 @@ function myDrawer() {
 const MyStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{header: () => null}}
+      />
       <Stack.Screen
         name="Login"
         component={Login}

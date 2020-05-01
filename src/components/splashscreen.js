@@ -16,68 +16,64 @@ class Splash extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.innerview}>
-          <Image source={imageConstants.splash} style={styles.LogoStyle} />
-        </View>
+        <Image source={imageConstants.splash} />
       </View>
     );
   }
-  _retrieveData = async () => {
+  //   _retrieveData = async () => {
+  //     const {navigation} = this.props;
+  //     try {
+  //       const value = await AsyncStorage.getItem('headerToken');
+  //       if (value !== null) {
+  //         this.props.toggleSplash();
+  //         setTimeout(() => {
+  //           navigation.reset({
+  //             index: 0,
+  //             routes: [{name: 'Concept'}],
+  //           });
+  //         }, 500);
+  //       }
+  //       if (value === null) {
+  //         setTimeout(() => {
+  //           navigation.reset({
+  //             index: 0,
+  //             routes: [{name: 'LoginScreen'}],
+  //           });
+  //         }, 500);
+  //       }
+  //     } catch (error) {
+  //       console.warn('no data');
+  //       // Error retrieving data
+  //     }
+  //   };
+  componentDidMount() {
     const {navigation} = this.props;
-    try {
-      const value = await AsyncStorage.getItem('headerToken');
-      if (value !== null) {
-        this.props.toggleSplash();
-        setTimeout(() => {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'Concept'}],
-          });
-        }, 500);
-      }
-      if (value === null) {
-        setTimeout(() => {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'LoginScreen'}],
-          });
-        }, 500);
-      }
-    } catch (error) {
-      console.warn('no data');
-      // Error retrieving data
-    }
-  };
-  componentDidMount() {}
+    setTimeout(() => {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      });
+    }, 1000);
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colorConstants.bacgroundColorSplash,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  innerview: {
-    height: 100,
-    width: 300,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  LogoStyle: {
-    height: 40.5,
-    width: 200.5,
-    resizeMode: 'contain',
-  },
 });
-const mapStateToProps = state => ({
-  tokenvalue: state.homeReducer.token,
-});
+// const mapStateToProps = state => ({
 
-const mapDispatchToProps = {
-  toggleSplash: toggleSplash,
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Splash);
+// });
+
+// const mapDispatchToProps = {
+
+// };
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(Splash);
+
+export default Splash;
